@@ -1,49 +1,26 @@
 <!doctype html>
 <html lang="en" class="h-100">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>Sticky Footer Navbar Template · Bootstrap</title>
+    <title>o(=•ェ•=)m的Live</title>
     <script src="./js/node_modules/jquery/dist/jquery.js"></script>
     <script src="./js/index.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sticky-footer-navbar/">
-
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        body {
-            margin-top: 70px;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./css/index.css">
     <!-- Custom styles for this template -->
     <!-- <link href="sticky-footer-navbar.css" rel="stylesheet"> -->
 </head>
-
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column ">
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Fixed navbar</a>
+            <a class="navbar-brand" href="#">首页</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -72,21 +49,19 @@
             <video id="v1" src="./video/幼小衔接之语文学习_op.mp4" controls="true" width="900px" height="100%"></video>
         </div>
         <div class=" btn-group-lg">
-            <button class="btn btn-primary"id="wd" onclick="test()">开始</button>
+            <button class="btn btn-primary"id="wd" onclick="test()">开始直播</button>
         </div>
     </div>
 
     <div class="col-lg-4">
         <div class=" btn-group-vertical">
-
         </div>
     </div>
-
-    <footer class="footer mt-auto py-3">
+    <footer class="footer  mt-auto py-3">
         <div class="container">
-            <span class="text-muted">Dsigned By Cat_Demo</span>
+          <span class="text-muted">This is a test HTML by Aster Dai.</span>
         </div>
-    </footer>
+      </footer>
     <script>
         var check = $('#v1');
         console.log(check);
@@ -94,24 +69,21 @@
         console.log(st);
         console.log(st.text());
         function test(){
-            if(st.text()=="开始"){
-                console.log(st.text()=="开始");
-                st.text("暂停");
+            if(st.text()=="开始直播"){
+                //console.log(st.text()=="开始");
+                st.text("暂停直播");
                 check.trigger('play');
                 return;
             }
-            if(st.text()=="暂停"){
-                console.log(st.text()=="暂停");
-                st.text("开始");
+            if(st.text()=="暂停直播"){
+                //console.log(st.text()=="暂停");
+                st.text("开始直播");
                 check.trigger('pause');
                 return;
             }
         }
-        
     </script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -122,5 +94,4 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
