@@ -44,24 +44,34 @@
             </div>
         </nav>
     </header>
-    <div class=" col-lg-9 ">
-        <div>
-            <video id="v1" src="./video/幼小衔接之语文学习_op.mp4" controls="true" width="900px" height="100%"></video>
+    <div class="row" style="margin-left: 10px;">
+        <!-- <div class="col-sm-1" style="width: 10px;"></div> -->
+        <div class=" col-md-7  " ">
+            <div >
+                <video id="v1" src="./video/幼小衔接之语文学习_op.mp4" controls="true"  width="100%" height="auto"></video>
+            </div>
+            <div class=" btn-group-lg">
+                <button class="btn btn-primary"id="wd" onclick="test()">开始直播</button>
+                <button class="btn btn-info"id="wd" onclick="setlocation()" style="float:right;">调整视角</button>
+            </div>
         </div>
-        <div class=" btn-group-lg">
-            <button class="btn btn-primary"id="wd" onclick="test()">开始直播</button>
+        <div class="col-md-auto">
+            <div>测试</div>
         </div>
     </div>
 
-    <div class="col-lg-4">
+    <!-- <div class="col-lg-4">
         <div class=" btn-group-vertical">
         </div>
+    </div> -->
+    <div>
+        <div style="height: 50px;"></div>
+        <footer class="footer  mt-auto py-3" style="height: 50px;">
+            <div class="container">
+              <span class="text-muted">This is a test HTML by Aster Dai.</span>
+            </div>
+          </footer>
     </div>
-    <footer class="footer  mt-auto py-3">
-        <div class="container">
-          <span class="text-muted">This is a test HTML by Aster Dai.</span>
-        </div>
-      </footer>
     <script>
         var check = $('#v1');
         console.log(check);
@@ -82,6 +92,26 @@
                 return;
             }
         }
+
+
+        //循环发送请求，每5秒
+        window.onload = function(){
+            getinfo()
+        }
+        function getinfo(){
+            //1000*5=5s
+            setTimeout(getinfo,5*1000)
+            $.post("/getinfo",(data,status)=>{
+                //默认data数据为json对象
+                console.log(data)
+                //获取到之后调用绘图函数
+                //weight() odor()
+            }).fail((xhr,status,info)=>{
+                
+                console.log("失败")
+            })
+        }
+
     </script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
