@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" class="h-100">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,9 +14,13 @@
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
+    <link href="//vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+    <script src="//vjs.zencdn.net/5.19/video.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.8.3/videojs-contrib-hls.min.js"></script>
     <!-- Custom styles for this template -->
     <!-- <link href="sticky-footer-navbar.css" rel="stylesheet"> -->
 </head>
+
 <body class="d-flex flex-column ">
     <header>
         <!-- Fixed navbar -->
@@ -48,16 +53,22 @@
         <!-- <div class="col-sm-1" style="width: 10px;"></div> -->
         <div class=" col-md-7  " ">
             <div >
-                <video id="v1" src="./video/幼小衔接之语文学习_op.mp4" controls="true"  width="100%" height="auto"></video>
-            </div>
-            <div class=" btn-group-lg">
-                <button class="btn btn-primary"id="wd" onclick="test()">开始直播</button>
-                <button class="btn btn-info"id="wd" onclick="setlocation()" style="float:right;">调整视角</button>
-            </div>
+                <div id=" live">
+            <video id="video-play" class="video-js vjs-default-skin" style="width: 600px; height: 400px;" playsinline
+                webkit-playsinline controls preload="auto" x-webkit-airplay="true" controlsList="nodownload"
+                oncontextmenu="return false">
+                <source src="http://192.168.200.64/live/live.m3u8" type="application/x-mpegURL">
+            </video>
         </div>
-        <div class="col-md-auto">
-            <div>测试</div>
-        </div>
+    </div>
+    <div class=" btn-group-lg">
+        <button class="btn btn-primary" id="wd" onclick="live()">开始直播</button>
+        <button class="btn btn-info" id="wd" onclick="setlocation()" style="float:right;">调整视角</button>
+    </div>
+    </div>
+    <div class="col-md-auto">
+        <div>测试</div>
+    </div>
     </div>
 
     <!-- <div class="col-lg-4">
@@ -68,9 +79,9 @@
         <div style="height: 50px;"></div>
         <footer class="footer  mt-auto py-3" style="height: 50px;">
             <div class="container">
-              <span class="text-muted">This is a test HTML by Aster Dai.</span>
+                <span class="text-muted">This is a test HTML by Aster Dai.</span>
             </div>
-          </footer>
+        </footer>
     </div>
     <script>
         var check = $('#v1');
@@ -78,36 +89,32 @@
         var st = $('#wd');
         console.log(st);
         console.log(st.text());
-        function test(){
-            if(st.text()=="开始直播"){
-                //console.log(st.text()=="开始");
-                st.text("暂停直播");
-                check.trigger('play');
-                return;
-            }
-            if(st.text()=="暂停直播"){
-                //console.log(st.text()=="暂停");
-                st.text("开始直播");
-                check.trigger('pause');
-                return;
+        function live() {
+            {
+                window.videojs('video-play', {}, function onPlayerReady() {
+                    this.play()
+                    this.on('ended', function () {
+                        console.log('ended, video js')
+                    })
+                })
             }
         }
 
 
         //循环发送请求，每5秒
-        window.onload = function(){
+        window.onload = function () {
             getinfo()
         }
-        function getinfo(){
+        function getinfo() {
             //1000*5=5s
-            setTimeout(getinfo,5*1000)
-            $.post("/getinfo",(data,status)=>{
+            setTimeout(getinfo, 5 * 1000)
+            $.post("/getinfo", (data, status) => {
                 //默认data数据为json对象
                 console.log(data)
                 //获取到之后调用绘图函数
                 //weight() odor()
-            }).fail((xhr,status,info)=>{
-                
+            }).fail((xhr, status, info) => {
+
                 console.log("失败")
             })
         }
@@ -124,4 +131,5 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
