@@ -9,7 +9,7 @@
     <meta name="generator" content="Jekyll v4.0.1">
     <title>o(=•ェ•=)m的Live</title>
     <script src="./js/node_modules/jquery/dist/jquery.js"></script>
-    <!-- <script src="./js/index.js"></script> -->
+    <script src="./js/node_modules/echarts/dist/echarts.js"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sticky-footer-navbar/">
     <!-- Bootstrap core CSS -->
     <link href="./css/bootstrap.css" rel="stylesheet">
@@ -51,23 +51,33 @@
     </header>
     <div class="row" style="margin-left: 10px;">
         <!-- <div class="col-sm-1" style="width: 10px;"></div> -->
-        <div class=" col-md-7  " ">
-            <div >
-                <div id=" live">
-            <video id="video-play" class="video-js vjs-default-skin" style="width:100%; height: auto;" playsinline
-                webkit-playsinline controls preload="auto" x-webkit-airplay="true" controlsList="nodownload"
-                oncontextmenu="return false">
-                <source src="/live/live.m3u8" type="application/x-mpegURL">
-            </video>
+        <div class="col-sm-8">
+            <div id=" live">
+                <video id="video-play" class="video-js vjs-default-skin" style="width:auto; height: 400px;" playsinline
+                    webkit-playsinline controls preload="auto" x-webkit-airplay="true" controlsList="nodownload"
+                    oncontextmenu="return false">
+                    <source src="/live/live.m3u8" type="application/x-mpegURL">
+                </video>
+            </div>
+        </div>
+        <div class=" col-sm-4">
+            <div class="col-md-auto" id="weight_chart" style="width: auto;height:250px;">
+                <div>测试
+                    <script src="./js/weight.js"></script>
+                </div>
+            </div>
+            <div class="col-md-auto" id="odor_chart" style="width: auto;height:250px;">
+                <div>测试
+                    <script src="./js/weight.js"></script>
+                </div>
+            </div>
         </div>
     </div>
-    
-    </div>
-    <div class="col-md-auto">
-        <div>测试</div>
-    </div>
-    </div>
-    <div class=" btn-group-lg">
+
+
+
+
+    <div class=" btn-group-lg" style="margin-left: 10px;">
         <button class="btn btn-primary" id="wd" onclick="live()">开始直播</button>
         <button class="btn btn-info" id="wd" onclick="setlocation()" style="float:right;">调整视角</button>
     </div>
@@ -101,54 +111,31 @@
         }
 
 
-        //循环发送请求，每5秒
-        window.onload = function () {
-            getinfo()
-        }
-        function getinfo() {
-            //1000*5=5s
-            setTimeout(getinfo, 5 * 1000)
-            $.post("/getinfo", (data, status) => {
-                //默认data数据为json对象
-                console.log(data)
-                //获取到之后调用绘图函数
-                //weight() odor()
-            })
-        }
-        let director=0;//0是左，1是右
-        function setlocation(){
-            if(director==0){
-                director=1
+
+        let director = 0;//0是左，1是右
+        function setlocation() {
+            if (director == 0) {
+                director = 1
                 console.log("向右定位")
             }
-            else{
-                director=0
+            else {
+                director = 0
                 console.log("向左定位")
             }
             //console.log()
-            
-            $.post("/setdirection",{"director":director},(data,status)=>{
+
+            $.post("/setdirection", { "director": director }, (data, status) => {
                 alert("切换视角")
-            }).done(()=>{
+            }).done(() => {
                 console.log("调用")
-            }).fail(()=>{
+            }).fail(() => {
                 console.log("失败调用")
             })
-            
+
         }
 
     </script>
-    <!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script> -->
+
 </body>
 
 </html>
