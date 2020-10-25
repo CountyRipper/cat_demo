@@ -20,9 +20,6 @@ var option = {
         left: 'center',
         text: '传感器',
     },
-    // legend: {
-    //     data:['重量值', '气味值']
-    // },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -54,25 +51,14 @@ var option = {
             return res;
         })()
     }
-        // ,{
-        //     type: 'category',
-        //     boundaryGap: true,
-        //     data: (function (){
-        //         var res = [];
-        //         var len = 10;
-        //         while (len--) {
-        //             res.push(10 - len - 1);
-        //         }
-        //         return res;
-        //     })()
-        // }],
+
     ],
     yAxis: [
         {
             type: 'value',
             scale: true,
             name: '重量值',
-            max: 100,
+            max: 10,
             min: 0,
             boundaryGap: [0.2, 0.2]
         },
@@ -80,7 +66,7 @@ var option = {
             type: 'value',
             scale: true,
             name: '气味值',
-            max: 200,
+            max: 150,
             min: 0,
             boundaryGap: [0.2, 0.2]
         }
